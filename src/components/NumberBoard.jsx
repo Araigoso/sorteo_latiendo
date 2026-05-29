@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 export default function NumberBoard({ takenNumbers, onSelect }) {
-  const TOTAL_NUMBERS = 1000
+  const TOTAL_NUMBERS = 500
   const NUMBERS_PER_PAGE = 50
 
   const [currentPage, setCurrentPage] = useState(0)
