@@ -101,6 +101,12 @@ function Home() {
   return (
     <div className="app">
       <div className='titulo'>
+         <img
+        src="/logo.png"
+        alt="Latiendo"
+        className="hero-logo"
+          />
+
         <h1> SORTEO ❤️</h1>
 
       <p>
