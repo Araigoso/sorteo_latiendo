@@ -192,7 +192,7 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Welcome />} />
-        <Route path="/Rifa Latiendo" element={<Home />} />
+        <Route path="/rifa" element={<Home />} />
         <Route path="/admin" element={<Admin />} />
       </Routes>
     </BrowserRouter>
