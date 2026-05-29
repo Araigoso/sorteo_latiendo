@@ -24,8 +24,18 @@ export default function RaffleForm() {
       </label>
 
       <label>
-        Número de rifa
-        <input type="number" value={numero} onChange={e => setNumero(e.target.value)} required />
+  Número de rifa (1-500)
+
+  <input
+    type="number"
+    min="1"
+    max="500"
+    value={numero}
+    onChange={e => setNumero(e.target.value)}
+    placeholder="Elegí un número"
+    required
+  />
+
       </label>
 
       <label>
