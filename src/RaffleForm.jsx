@@ -7,9 +7,15 @@ export default function RaffleForm() {
   const [comprobante, setComprobante] = useState(null)
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    alert('Formulario OK (todavía no envía)')
+  e.preventDefault()
+
+  if (numero < 1 || numero > 500) {
+    alert('Elegí un número entre 1 y 500')
+    return
   }
+
+  alert('Formulario OK (todavía no envía)')
+}
 
   return (
     <form onSubmit={handleSubmit}>
