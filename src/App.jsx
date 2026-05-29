@@ -101,12 +101,13 @@ function Home() {
   return (
     <div className="app">
       <div className='titulo'>
-        <h1>SORTEO ❤️</h1>
+        <h1> SORTEO ❤️</h1>
 
       <p>
       Elegí tu número, participá y ayudanos a seguir latiendo  🌟
+      Recordá que podes elegir del 1 al 500
       </p>  
-      <p>Recordá que podes elegir del 1 al 500 </p>
+    
       </div>
 
       <div className="container">
