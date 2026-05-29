@@ -10,8 +10,11 @@
 }
 
 body {
-  background: #3B4356;
-  color: white;
+
+  background: #F8F5F1;
+
+  color: #2F3645;
+
   min-height: 100vh;
 }
 
@@ -74,8 +77,12 @@ h1 {
   justify-content: center;
 
   border-radius: 12px;
-  border: 2px solid #94A378;
-  background: #94A378;
+
+  background: #556B57;
+
+  border: 2px solid #556B57;
+
+  color: #FFFFFF;
 
   font-size: 18px;
   font-weight: 600;
@@ -96,8 +103,11 @@ h1 {
 
 /* CELDA OCUPADA */
 .cell.taken {
-  background: #C89876;
-  border-color: #C89876;
+  background: #D6B35C;
+
+  border-color: #D6B35C;
+
+  color: white;
   color: rgba(255, 255, 255, 0.8);
   cursor: not-allowed;
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -614,19 +624,25 @@ h1 {
 }
 
 .welcome-button {
-  background: #94A378;
-  color: #3B4356;
-  border: none;
-  padding: 14px 32px;
+  background: #556B57;
+
+  color: white;
+
+  border-radius: 14px;
+
+  padding: 14px 30px;
+
+  font-weight: 700;
+  
   font-size: 16px;
-  font-weight: 600;
-  border-radius: 12px;
+  
   cursor: pointer;
   transition: all 0.25s ease;
 }
 
 .welcome-button:hover {
-  background: #A8B68C;
+  background: #68816A;
+
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(148, 163, 120, 0.4);
 }
