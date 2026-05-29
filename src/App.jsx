@@ -102,7 +102,7 @@ function Home() {
     <div className="app">
       <div className='titulo'>
         <h1>Elegí tu numero</h1>
-        <p>Recordá que podes elegir del 1 al 1000 🌟</p>
+        <p>Recordá que podes elegir del 1 al 500 </p>
       </div>
 
       <div className="container">
