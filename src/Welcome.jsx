@@ -11,22 +11,23 @@ export default function Welcome() {
 
   return (
     <div className="welcome">
-      <h1>Sorteo Solidario</h1>
-
+      <h1>Rifa Solidaria</h1>
+      <h2>Para ir a ver a LALI</h2>
+      
       <div className="welcome-card">
         <p>
-          Gracias por colaborar.
+          XXXXXXX
         </p>
 
         <p>
-          Cada número comprado es un paso más para cumplir un sueño 💛
+          XXXXXXXXXXXXXXXXXXXXX
         </p>
 
         <h3>¿Cómo participar?</h3>
 
         <ol>
-          <li>Elegí tu número 🎟️ (del 1 al 1000!)  </li>
-          <li>Hacé la transferencia de $10.000 al alias <strong>luchi.ferrari27</strong></li>
+          <li>Elegí tu número 🎟️ (del 1 al 500!)  </li>
+          <li>Hacé la transferencia de $3.000 al alias <strong>latiendojuntos.ong</strong></li>
           <li>Subí tu comprobante</li>
           <li>Recibí la confirmación por email :) </li>
         </ol>
