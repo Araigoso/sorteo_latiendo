@@ -12,34 +12,49 @@ export default async (req) => {
     const raw = await store.get('numbers')
 
     if (!raw) {
-      return Response.json({ error: 'Numbers not initialized' }, { status: 400 })
+      return Response.json(
+        { error: 'Numbers not initialized' },
+        { status: 400 }
+      )
     }
 
     const numbers = JSON.parse(raw)
 
     if (!numbers[number]) {
-      return Response.json({ error: 'Número no existe' }, { status: 400 })
+      return Response.json(
+        { error: 'Número no existe' },
+        { status: 400 }
+      )
     }
 
     const numberData = numbers[number]
 
     if (numberData.status === 'taken') {
-      return Response.json({ error: 'Número no está disponible' }, { status: 400 })
+      return Response.json(
+        { error: 'Número no está disponible' },
+        { status: 400 }
+      )
     }
 
-    if (numberData.status === 'reserved' && numberData.sessionId !== sessionId) {
-      return Response.json({ error: 'Número reservado por otra persona' }, { status: 400 })
+    if (
+      numberData.status === 'reserved' &&
+      numberData.sessionId !== sessionId
+    ) {
+      return Response.json(
+        { error: 'Número reservado por otra persona' },
+        { status: 400 }
+      )
     }
 
-    let proofKey = null
+    let base64Data = null
+    let fileName = null
 
     if (paymentProof && paymentProof.startsWith('data:')) {
       const matches = paymentProof.match(/^data:([^;]+);base64,(.+)$/)
 
       if (matches) {
         const mimeType = matches[1]
-        const base64Data = matches[2]
-        const buffer = Buffer.from(base64Data, 'base64')
+        base64Data = matches[2]
 
         const extension =
           mimeType.includes('png') ? 'png'
@@ -47,9 +62,7 @@ export default async (req) => {
           : mimeType.includes('webp') ? 'webp'
           : 'jpg'
 
-        proofKey = `proof-${number}-${Date.now()}.${extension}`
-
-        await store.set(proofKey, buffer)
+        fileName = `comprobante-numero-${number}.${extension}`
       }
     }
 
@@ -57,7 +70,6 @@ export default async (req) => {
       status: 'taken',
       name,
       email,
-      proofKey,
       date: new Date().toISOString()
     }
 
@@ -71,6 +83,7 @@ export default async (req) => {
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px;">
             <h2>✅ Nueva reserva de rifa</h2>
+
             <p><strong>Nombre:</strong> ${name}</p>
             <p><strong>Email:</strong> ${email}</p>
 
@@ -79,9 +92,17 @@ export default async (req) => {
               <h1 style="margin:10px 0;font-size:48px;">${number}</h1>
             </div>
 
-            <p><strong>Comprobante guardado:</strong> ${proofKey || 'Sin comprobante'}</p>
+            <p><strong>Comprobante:</strong> ${fileName ? 'Adjunto en este mail' : 'No se adjuntó comprobante'}</p>
           </div>
-        `
+        `,
+        attachments: base64Data
+          ? [
+              {
+                filename: fileName,
+                content: base64Data,
+              },
+            ]
+          : [],
       })
     } catch (emailError) {
       console.error('❌ Error sending email:', emailError)
