@@ -97,27 +97,36 @@ export default async (req) => {
     // -------------------------
 
     try {
-      await resend.emails.send({
-        from: 'Rifa <onboarding@resend.dev>',
-        to: 'raigosoamparo@gmail.com',
-        subject: `¡Confirmación de tu número ${number}!`,
-        html: `
-          <div style="font-family: Arial, sans-serif; max-width: 600px;">
-            <h2>✅ ¡Gracias por participar!</h2>
-            <p>Hola <strong>${name}</strong>,</p>
-            <p>Recibimos tu comprobante correctamente.</p>
-            
-            <p>Email: ${email}</p>
-                        
-            <div style="background:#f3f4f6;padding:20px;border-radius:8px;margin:20px 0;text-align:center;">
-              <p style="margin:0;">Tu número es:</p>
-              <h1 style="margin:10px 0;font-size:48px;">${number}</h1>
-            </div>
+await resend.emails.send({
+  from: 'Rifa <onboarding@resend.dev>',
+  to: 'raigosoamparo@gmail.com',
+  subject: `¡Confirmación de tu número ${number}!`,
+  html: `
+    <div style="font-family: Arial, sans-serif; max-width: 600px;">
+      <h2>✅ ¡Gracias por participar!</h2>
+      <p>Hola <strong>${name}</strong>,</p>
+      <p>Recibimos tu comprobante correctamente.</p>
 
-            <p>Te vamos a avisar cuando se realice el sorteo. Gracias 🍀</p>
-          </div>
-        `
-      })
+      <p>Email: ${email}</p>
+
+      <div style="background:#f3f4f6;padding:20px;border-radius:8px;margin:20px 0;text-align:center;">
+        <p style="margin:0;">Tu número es:</p>
+        <h1 style="margin:10px 0;font-size:48px;">${number}</h1>
+      </div>
+
+      <p>Te vamos a avisar cuando se realice el sorteo. Gracias 🍀</p>
+    </div>
+  `,
+  attachments:
+    proofKey && base64Data
+      ? [
+          {
+            filename: proofKey,
+            content: base64Data,
+          },
+        ]
+      : [],
+})
     } catch (emailError) {
       console.error('❌ Error sending email:', emailError)
     }
