@@ -16,7 +16,7 @@ export default async () => {
 
   if (!numbers || typeof numbers !== 'object') {
     numbers = {}
-    for (let i = 1; i <= 1000; i++) {
+    for (let i = 1; i <= 500; i++) {
       numbers[i] = { status: 'available' }
     }
 
