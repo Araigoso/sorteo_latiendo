@@ -6,7 +6,7 @@ export default async (req) => {
 
   const raw = await store.get('numbers')
   if (!raw) {
-    return Response.json({ error: 'Numbers not initialized - aca entre yo' }, { status: 400 })
+    return Response.json({ error: 'Numbers not initialized' }, { status: 400 })
   }
 
   const numbers = JSON.parse(raw)
