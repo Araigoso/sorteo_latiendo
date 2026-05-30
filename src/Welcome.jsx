@@ -16,7 +16,7 @@ export default function Welcome() {
       
       <div className="welcome-card">
         <p>
-          ayuda
+          xxxxxxxxxxx
         </p>
 
         <p>
