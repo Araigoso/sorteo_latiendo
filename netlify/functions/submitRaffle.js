@@ -115,15 +115,6 @@ try {
 
         <p>Comprobante adjunto.</p>
       </div>
-    `,
-    attachments: base64Data
-      ? [
-          {
-            filename: proofKey || `comprobante-${number}.jpg`,
-            content: base64Data,
-          },
-        ]
-      : [],
   })
 } catch (emailError) {
   console.error('❌ Error sending email:', emailError)
