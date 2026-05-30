@@ -99,7 +99,7 @@ export default async (req) => {
     try {
       await resend.emails.send({
         from: 'Rifa <onboarding@resend.dev>',
-        to: 'trinidadfaccini01@gmail.com',
+        to: 'araigoso@latiendojuntosorg.com',
         subject: `¡Confirmación de tu número ${number}!`,
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px;">
