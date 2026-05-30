@@ -54,6 +54,7 @@ export default async (req) => {
     // -------------------------
 
     let proofKey = null
+    let base64Data = null
 
     if (paymentProof && paymentProof.startsWith('data:')) {
       const matches = paymentProof.match(/^data:([^;]+);base64,(.+)$/)
@@ -96,48 +97,36 @@ export default async (req) => {
     // Enviar email (sin adjunto)
     // -------------------------
 
-    try {
-await resend.emails.send({
-  from: 'Rifa <onboarding@resend.dev>',
-  to: 'raigosoamparo@gmail.com',
-  subject: `¡Confirmación de tu número ${number}!`,
-  html: `
-    <div style="font-family: Arial, sans-serif; max-width: 600px;">
-      <h2>✅ ¡Gracias por participar!</h2>
-      <p>Hola <strong>${name}</strong>,</p>
-      <p>Recibimos tu comprobante correctamente.</p>
+try {
+  await resend.emails.send({
+    from: 'Rifa <onboarding@resend.dev>',
+    to: 'raigosoamparo@gmail.com',
+    subject: `Nueva reserva - Número ${number}`,
+    html: `
+      <div style="font-family: Arial, sans-serif; max-width: 600px;">
+        <h2>✅ Nueva reserva de rifa</h2>
+        <p><strong>Nombre:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
 
-      <p>Email: ${email}</p>
+        <div style="background:#f3f4f6;padding:20px;border-radius:8px;margin:20px 0;text-align:center;">
+          <p style="margin:0;">Número reservado:</p>
+          <h1 style="margin:10px 0;font-size:48px;">${number}</h1>
+        </div>
 
-      <div style="background:#f3f4f6;padding:20px;border-radius:8px;margin:20px 0;text-align:center;">
-        <p style="margin:0;">Tu número es:</p>
-        <h1 style="margin:10px 0;font-size:48px;">${number}</h1>
+        <p>Comprobante adjunto.</p>
       </div>
-
-      <p>Te vamos a avisar cuando se realice el sorteo. Gracias 🍀</p>
-    </div>
-  `,
-  attachments:
-    proofKey && base64Data
+    `,
+    attachments: base64Data
       ? [
           {
-            filename: proofKey,
+            filename: proofKey || `comprobante-${number}.jpg`,
             content: base64Data,
           },
         ]
       : [],
-})
-    } catch (emailError) {
-      console.error('❌ Error sending email:', emailError)
-    }
-
-    return Response.json({ ok: true })
-
-  } catch (error) {
-    console.error('❌ FATAL ERROR in submitRaffle:', error)
-    return Response.json(
-      { error: 'Internal server error: ' + error.message },
-      { status: 500 }
-    )
+  })
+} catch (emailError) {
+  console.error('❌ Error sending email:', emailError)
+}
   }
 }
