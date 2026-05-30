@@ -102,7 +102,7 @@ function Home() {
     <div className="app">
       <div className='titulo'>
          <img
-        src="/Logo latiendo juntos-20.png"
+        src="/Logos latiendo juntos-20.png"
         alt="Latiendo"
         className="hero-logo"
           />
