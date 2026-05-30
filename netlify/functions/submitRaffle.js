@@ -16,7 +16,7 @@ export default async (req) => {
         { error: 'Numbers not initialized' },
         { status: 400 }
       )
-    }
+    } 
 
     const numbers = JSON.parse(raw)
 
