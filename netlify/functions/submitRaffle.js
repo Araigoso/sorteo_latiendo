@@ -114,7 +114,7 @@ export default async (req) => {
               <h1 style="margin:10px 0;font-size:48px;">${number}</h1>
             </div>
 
-            <p>Te vamos a avisar cuando se realice el sorteo 🍀</p>
+            <p>Te vamos a avisar cuando se realice el sorteo. Gracias 🍀</p>
           </div>
         `
       })
